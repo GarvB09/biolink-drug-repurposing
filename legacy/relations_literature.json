@@ -1,0 +1,46 @@
+[
+  {
+    "head": "baricitinib",
+    "head_type": "DRUG",
+    "relation": "associated_with",
+    "tail": "covid-19",
+    "tail_type": "DISEASE",
+    "source": "literature",
+    "pmid": "36863017",
+    "sentence": "There are conflicting reports on results from several latest clinical trials regarding baricitinib use in COVID-19 management.",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9477792"
+  },
+  {
+    "head": "nintedanib",
+    "head_type": "DRUG",
+    "relation": "associated_with",
+    "tail": "idiopathic pulmonary fibrosis",
+    "tail_type": "DISEASE",
+    "source": "literature",
+    "pmid": "28293034",
+    "sentence": "Nintedanib, a tyrosine kinase inhibitor, is one of two drugs approved for the treatment of idiopathic pulmonary fibrosis.",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5531305/"
+  },
+  {
+    "head": "adalimumab",
+    "head_type": "DRUG",
+    "relation": "associated_with",
+    "tail": "rheumatoid arthritis",
+    "tail_type": "DISEASE",
+    "source": "literature",
+    "pmid": "23316080",
+    "sentence": "The objective of this study was to evaluate the efficacy and safety of adalimumab plus methotrexate in Japanese patients with early rheumatoid arthritis.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/23316080/"
+  },
+  {
+    "head": "methotrexate",
+    "head_type": "DRUG",
+    "relation": "associated_with",
+    "tail": "rheumatoid arthritis",
+    "tail_type": "DISEASE",
+    "source": "literature",
+    "pmid": "23316080",
+    "sentence": "The objective of this study was to evaluate the efficacy and safety of adalimumab plus methotrexate in Japanese patients with early rheumatoid arthritis.",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/23316080/"
+  }
+]

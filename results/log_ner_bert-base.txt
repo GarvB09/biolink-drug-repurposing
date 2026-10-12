@@ -1,0 +1,46 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/197 [00:00<?, ?it/s]Loading weights:  20%|##        | 40/197 [00:00<00:00, 379.30it/s]Loading weights:  59%|#####9    | 117/197 [00:00<00:00, 604.01it/s]Loading weights: 100%|##########| 197/197 [00:00<00:00, 950.44it/s]
+[transformers] [1mBertForTokenClassification LOAD REPORT[0m from: bert-base-cased
+Key                                        | Status     | 
+-------------------------------------------+------------+-
+cls.seq_relationship.weight                | UNEXPECTED | 
+cls.seq_relationship.bias                  | UNEXPECTED | 
+bert.pooler.dense.bias                     | UNEXPECTED | 
+cls.predictions.transform.dense.weight     | UNEXPECTED | 
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED | 
+cls.predictions.bias                       | UNEXPECTED | 
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED | 
+cls.predictions.transform.dense.bias       | UNEXPECTED | 
+bert.pooler.dense.weight                   | UNEXPECTED | 
+classifier.weight                          | MISSING    | 
+classifier.bias                            | MISSING    | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+step 50/1142 loss=0.2776 elapsed=1.4m eta=29.9m
+step 100/1142 loss=0.2737 elapsed=2.7m eta=28.3m
+step 150/1142 loss=0.0717 elapsed=4.0m eta=26.1m
+step 200/1142 loss=0.1061 elapsed=5.4m eta=25.2m
+step 250/1142 loss=0.1077 elapsed=6.7m eta=23.8m
+step 300/1142 loss=0.0731 elapsed=8.2m eta=23.0m
+step 350/1142 loss=0.0372 elapsed=9.6m eta=21.6m
+step 400/1142 loss=0.0536 elapsed=11.0m eta=20.4m
+step 450/1142 loss=0.0530 elapsed=12.3m eta=18.9m
+step 500/1142 loss=0.0505 elapsed=13.9m eta=17.8m
+step 550/1142 loss=0.0581 elapsed=15.4m eta=16.6m
+{'epoch': 1, 'train_loss': 0.15445662175603667}
+step 600/1142 loss=0.0255 elapsed=16.9m eta=15.3m
+step 650/1142 loss=0.0507 elapsed=18.5m eta=14.0m
+step 700/1142 loss=0.0593 elapsed=20.0m eta=12.6m
+step 750/1142 loss=0.0165 elapsed=21.3m eta=11.1m
+step 800/1142 loss=0.0066 elapsed=22.7m eta=9.7m
+step 850/1142 loss=0.0565 elapsed=23.9m eta=8.2m
+step 900/1142 loss=0.0144 elapsed=25.2m eta=6.8m
+step 950/1142 loss=0.0086 elapsed=26.6m eta=5.4m
+step 1000/1142 loss=0.0419 elapsed=28.1m eta=4.0m
+step 1050/1142 loss=0.0999 elapsed=29.4m eta=2.6m
+step 1100/1142 loss=0.0327 elapsed=30.9m eta=1.2m
+{'epoch': 2, 'train_loss': 0.03427205481631221}
+{'precision': np.float64(0.8505205264191711), 'recall': np.float64(0.882862677133245), 'f1': np.float64(0.8663898754439497), 'Chemical': {'precision': np.float64(0.9025902955125866), 'recall': np.float64(0.9188486536675952), 'f1-score': np.float64(0.9106469126713904)}, 'Disease': {'precision': np.float64(0.7897872340425532), 'recall': np.float64(0.8390596745027125), 'f1-score': np.float64(0.8136782113108286)}, 'train_seconds': 1921, 'infer_seconds': 110, 'epochs': 2, 'lr': 5e-05, 'batch_size': 16, 'max_len': 192, 'checkpoint': 'bert-base-cased', 'history': [{'epoch': 1, 'train_loss': 0.15445662175603667}, {'epoch': 2, 'train_loss': 0.03427205481631221}]}
+Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s]Writing model shards: 100%|##########| 1/1 [00:00<00:00,  6.68it/s]Writing model shards: 100%|##########| 1/1 [00:00<00:00,  6.67it/s]

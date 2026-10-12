@@ -1,0 +1,48 @@
+Loading weights:   0%|          | 0/197 [00:00<?, ?it/s]Loading weights: 100%|##########| 197/197 [00:00<00:00, 26157.97it/s]
+[transformers] [1mBertForTokenClassification LOAD REPORT[0m from: microsoft/BiomedNLP-BiomedBERT-base-uncased-abstract-fulltext
+Key                                        | Status     | 
+-------------------------------------------+------------+-
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED | 
+cls.seq_relationship.bias                  | UNEXPECTED | 
+cls.predictions.decoder.bias               | UNEXPECTED | 
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED | 
+cls.predictions.decoder.weight             | UNEXPECTED | 
+bert.pooler.dense.weight                   | UNEXPECTED | 
+cls.seq_relationship.weight                | UNEXPECTED | 
+cls.predictions.transform.dense.bias       | UNEXPECTED | 
+bert.pooler.dense.bias                     | UNEXPECTED | 
+cls.predictions.bias                       | UNEXPECTED | 
+cls.predictions.transform.dense.weight     | UNEXPECTED | 
+classifier.bias                            | MISSING    | 
+classifier.weight                          | MISSING    | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+step 50/1142 loss=0.2806 elapsed=1.3m eta=28.7m
+step 100/1142 loss=0.0598 elapsed=2.6m eta=26.7m
+step 150/1142 loss=0.2068 elapsed=3.8m eta=25.0m
+step 200/1142 loss=0.1500 elapsed=5.1m eta=23.8m
+step 250/1142 loss=0.1402 elapsed=6.3m eta=22.5m
+step 300/1142 loss=0.0635 elapsed=7.7m eta=21.5m
+step 350/1142 loss=0.0342 elapsed=8.9m eta=20.2m
+step 400/1142 loss=0.0612 elapsed=10.2m eta=19.0m
+step 450/1142 loss=0.0356 elapsed=11.4m eta=17.5m
+step 500/1142 loss=0.0690 elapsed=12.8m eta=16.4m
+step 550/1142 loss=0.0734 elapsed=14.2m eta=15.3m
+{'epoch': 1, 'train_loss': 0.164689406127695}
+step 600/1142 loss=0.0349 elapsed=15.5m eta=14.0m
+step 650/1142 loss=0.0193 elapsed=16.9m eta=12.8m
+step 700/1142 loss=0.0066 elapsed=18.2m eta=11.5m
+step 750/1142 loss=0.0447 elapsed=19.4m eta=10.1m
+step 800/1142 loss=0.0178 elapsed=20.6m eta=8.8m
+step 850/1142 loss=0.0124 elapsed=21.7m eta=7.5m
+step 900/1142 loss=0.0141 elapsed=22.9m eta=6.1m
+step 950/1142 loss=0.0456 elapsed=24.1m eta=4.9m
+step 1000/1142 loss=0.0265 elapsed=25.4m eta=3.6m
+step 1050/1142 loss=0.0133 elapsed=26.6m eta=2.3m
+step 1100/1142 loss=0.0491 elapsed=27.9m eta=1.1m
+{'epoch': 2, 'train_loss': 0.033414453161778844}
+{'precision': np.float64(0.896140350877193), 'recall': np.float64(0.9113059435212559), 'f1': np.float64(0.9036595228467449), 'Chemical': {'precision': np.float64(0.940398584466381), 'recall': np.float64(0.9376044568245125), 'f1-score': np.float64(0.9389994420680677)}, 'Disease': {'precision': np.float64(0.8445505861919236), 'recall': np.float64(0.8792947558770343), 'f1-score': np.float64(0.8615725359911406)}, 'train_seconds': 1726, 'infer_seconds': 89, 'epochs': 2, 'lr': 5e-05, 'batch_size': 16, 'max_len': 192, 'checkpoint': 'microsoft/BiomedNLP-BiomedBERT-base-uncased-abstract-fulltext', 'history': [{'epoch': 1, 'train_loss': 0.164689406127695}, {'epoch': 2, 'train_loss': 0.033414453161778844}]}
+Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s]Writing model shards: 100%|##########| 1/1 [00:00<00:00,  3.29it/s]Writing model shards: 100%|##########| 1/1 [00:00<00:00,  3.29it/s]

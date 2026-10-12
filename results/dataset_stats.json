@@ -1,0 +1,83 @@
+{
+  "bc5cdr": {
+    "train": {
+      "abstracts": 500,
+      "sentences": 4562,
+      "tokens": 118170,
+      "chemical_mentions": 5203,
+      "disease_mentions": 4182,
+      "unique_chemical_ids": 664,
+      "unique_disease_ids": 664,
+      "cid_relations": 1038,
+      "re_candidates": 5432,
+      "re_positive": 1038,
+      "re_positive_same_sentence": 756,
+      "relations_without_candidate": 0,
+      "avg_tokens_per_abstract": 236.3
+    },
+    "dev": {
+      "abstracts": 500,
+      "sentences": 4565,
+      "tokens": 117451,
+      "chemical_mentions": 5347,
+      "disease_mentions": 4244,
+      "unique_chemical_ids": 659,
+      "unique_disease_ids": 604,
+      "cid_relations": 1012,
+      "re_candidates": 5261,
+      "re_positive": 1012,
+      "re_positive_same_sentence": 767,
+      "relations_without_candidate": 0,
+      "avg_tokens_per_abstract": 234.9
+    },
+    "test": {
+      "abstracts": 500,
+      "sentences": 4798,
+      "tokens": 124748,
+      "chemical_mentions": 5385,
+      "disease_mentions": 4424,
+      "unique_chemical_ids": 670,
+      "unique_disease_ids": 645,
+      "cid_relations": 1066,
+      "re_candidates": 5405,
+      "re_positive": 1066,
+      "re_positive_same_sentence": 748,
+      "relations_without_candidate": 0,
+      "avg_tokens_per_abstract": 249.5
+    }
+  },
+  "hetionet": {
+    "entities": 21646,
+    "relations": 14,
+    "triples": 234512,
+    "train_triples": 234360,
+    "valid_ctd": 76,
+    "test_ctd": 76,
+    "train_ctd": 603,
+    "entity_kinds": {
+      "Gene": 13113,
+      "Side Effect": 5701,
+      "Compound": 1538,
+      "Symptom": 415,
+      "Anatomy": 398,
+      "Pharmacologic Class": 345,
+      "Disease": 136
+    },
+    "relation_counts": {
+      "causes": 138944,
+      "downregulates": 21102,
+      "upregulates": 18756,
+      "associates": 12623,
+      "binds": 11571,
+      "upregulates_d": 7731,
+      "downregulates_d": 7623,
+      "resembles": 6486,
+      "localizes": 3602,
+      "presents": 3357,
+      "includes": 1029,
+      "treats": 755,
+      "resembles_d": 543,
+      "palliates": 390
+    }
+  }
+}

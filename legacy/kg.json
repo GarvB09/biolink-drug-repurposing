@@ -1,0 +1,1555 @@
+{
+  "nodes": [
+    {
+      "id": 0,
+      "name": "baricitinib",
+      "type": "DRUG"
+    },
+    {
+      "id": 1,
+      "name": "covid-19",
+      "type": "DISEASE"
+    },
+    {
+      "id": 2,
+      "name": "nintedanib",
+      "type": "DRUG"
+    },
+    {
+      "id": 3,
+      "name": "idiopathic pulmonary fibrosis",
+      "type": "DISEASE"
+    },
+    {
+      "id": 4,
+      "name": "adalimumab",
+      "type": "DRUG"
+    },
+    {
+      "id": 5,
+      "name": "rheumatoid arthritis",
+      "type": "DISEASE"
+    },
+    {
+      "id": 6,
+      "name": "methotrexate",
+      "type": "DRUG"
+    },
+    {
+      "id": 7,
+      "name": "metformin",
+      "type": "DRUG"
+    },
+    {
+      "id": 8,
+      "name": "type 2 diabetes",
+      "type": "DISEASE"
+    },
+    {
+      "id": 9,
+      "name": "insulin",
+      "type": "DRUG"
+    },
+    {
+      "id": 10,
+      "name": "type 1 diabetes",
+      "type": "DISEASE"
+    },
+    {
+      "id": 11,
+      "name": "empagliflozin",
+      "type": "DRUG"
+    },
+    {
+      "id": 12,
+      "name": "semaglutide",
+      "type": "DRUG"
+    },
+    {
+      "id": 13,
+      "name": "obesity",
+      "type": "DISEASE"
+    },
+    {
+      "id": 14,
+      "name": "liraglutide",
+      "type": "DRUG"
+    },
+    {
+      "id": 15,
+      "name": "atorvastatin",
+      "type": "DRUG"
+    },
+    {
+      "id": 16,
+      "name": "hyperlipidemia",
+      "type": "DISEASE"
+    },
+    {
+      "id": 17,
+      "name": "rosuvastatin",
+      "type": "DRUG"
+    },
+    {
+      "id": 18,
+      "name": "simvastatin",
+      "type": "DRUG"
+    },
+    {
+      "id": 19,
+      "name": "lisinopril",
+      "type": "DRUG"
+    },
+    {
+      "id": 20,
+      "name": "hypertension",
+      "type": "DISEASE"
+    },
+    {
+      "id": 21,
+      "name": "losartan",
+      "type": "DRUG"
+    },
+    {
+      "id": 22,
+      "name": "amlodipine",
+      "type": "DRUG"
+    },
+    {
+      "id": 23,
+      "name": "metoprolol",
+      "type": "DRUG"
+    },
+    {
+      "id": 24,
+      "name": "heart failure",
+      "type": "DISEASE"
+    },
+    {
+      "id": 25,
+      "name": "furosemide",
+      "type": "DRUG"
+    },
+    {
+      "id": 26,
+      "name": "spironolactone",
+      "type": "DRUG"
+    },
+    {
+      "id": 27,
+      "name": "digoxin",
+      "type": "DRUG"
+    },
+    {
+      "id": 28,
+      "name": "atrial fibrillation",
+      "type": "DISEASE"
+    },
+    {
+      "id": 29,
+      "name": "amiodarone",
+      "type": "DRUG"
+    },
+    {
+      "id": 30,
+      "name": "apixaban",
+      "type": "DRUG"
+    },
+    {
+      "id": 31,
+      "name": "rivaroxaban",
+      "type": "DRUG"
+    },
+    {
+      "id": 32,
+      "name": "thrombosis",
+      "type": "DISEASE"
+    },
+    {
+      "id": 33,
+      "name": "warfarin",
+      "type": "DRUG"
+    },
+    {
+      "id": 34,
+      "name": "clopidogrel",
+      "type": "DRUG"
+    },
+    {
+      "id": 35,
+      "name": "coronary artery disease",
+      "type": "DISEASE"
+    },
+    {
+      "id": 36,
+      "name": "aspirin",
+      "type": "DRUG"
+    },
+    {
+      "id": 37,
+      "name": "etanercept",
+      "type": "DRUG"
+    },
+    {
+      "id": 38,
+      "name": "infliximab",
+      "type": "DRUG"
+    },
+    {
+      "id": 39,
+      "name": "tofacitinib",
+      "type": "DRUG"
+    },
+    {
+      "id": 40,
+      "name": "psoriasis",
+      "type": "DISEASE"
+    },
+    {
+      "id": 41,
+      "name": "psoriatic arthritis",
+      "type": "DISEASE"
+    },
+    {
+      "id": 42,
+      "name": "crohn's disease",
+      "type": "DISEASE"
+    },
+    {
+      "id": 43,
+      "name": "ulcerative colitis",
+      "type": "DISEASE"
+    },
+    {
+      "id": 44,
+      "name": "mesalamine",
+      "type": "DRUG"
+    },
+    {
+      "id": 45,
+      "name": "sulfasalazine",
+      "type": "DRUG"
+    },
+    {
+      "id": 46,
+      "name": "pirfenidone",
+      "type": "DRUG"
+    },
+    {
+      "id": 47,
+      "name": "non-small cell lung cancer",
+      "type": "DISEASE"
+    },
+    {
+      "id": 48,
+      "name": "erlotinib",
+      "type": "DRUG"
+    },
+    {
+      "id": 49,
+      "name": "pembrolizumab",
+      "type": "DRUG"
+    },
+    {
+      "id": 50,
+      "name": "melanoma",
+      "type": "DISEASE"
+    },
+    {
+      "id": 51,
+      "name": "nivolumab",
+      "type": "DRUG"
+    },
+    {
+      "id": 52,
+      "name": "trastuzumab",
+      "type": "DRUG"
+    },
+    {
+      "id": 53,
+      "name": "breast cancer",
+      "type": "DISEASE"
+    },
+    {
+      "id": 54,
+      "name": "tamoxifen",
+      "type": "DRUG"
+    },
+    {
+      "id": 55,
+      "name": "paclitaxel",
+      "type": "DRUG"
+    },
+    {
+      "id": 56,
+      "name": "cisplatin",
+      "type": "DRUG"
+    },
+    {
+      "id": 57,
+      "name": "doxorubicin",
+      "type": "DRUG"
+    },
+    {
+      "id": 58,
+      "name": "imatinib",
+      "type": "DRUG"
+    },
+    {
+      "id": 59,
+      "name": "leukemia",
+      "type": "DISEASE"
+    },
+    {
+      "id": 60,
+      "name": "cyclophosphamide",
+      "type": "DRUG"
+    },
+    {
+      "id": 61,
+      "name": "lymphoma",
+      "type": "DISEASE"
+    },
+    {
+      "id": 62,
+      "name": "vincristine",
+      "type": "DRUG"
+    },
+    {
+      "id": 63,
+      "name": "rituximab",
+      "type": "DRUG"
+    },
+    {
+      "id": 64,
+      "name": "azathioprine",
+      "type": "DRUG"
+    },
+    {
+      "id": 65,
+      "name": "systemic lupus erythematosus",
+      "type": "DISEASE"
+    },
+    {
+      "id": 66,
+      "name": "cyclosporine",
+      "type": "DRUG"
+    },
+    {
+      "id": 67,
+      "name": "tacrolimus",
+      "type": "DRUG"
+    },
+    {
+      "id": 68,
+      "name": "hydroxychloroquine",
+      "type": "DRUG"
+    },
+    {
+      "id": 69,
+      "name": "prednisone",
+      "type": "DRUG"
+    },
+    {
+      "id": 70,
+      "name": "dexamethasone",
+      "type": "DRUG"
+    },
+    {
+      "id": 71,
+      "name": "remdesivir",
+      "type": "DRUG"
+    },
+    {
+      "id": 72,
+      "name": "montelukast",
+      "type": "DRUG"
+    },
+    {
+      "id": 73,
+      "name": "asthma",
+      "type": "DISEASE"
+    },
+    {
+      "id": 74,
+      "name": "fluticasone",
+      "type": "DRUG"
+    },
+    {
+      "id": 75,
+      "name": "budesonide",
+      "type": "DRUG"
+    },
+    {
+      "id": 76,
+      "name": "albuterol",
+      "type": "DRUG"
+    },
+    {
+      "id": 77,
+      "name": "tiotropium",
+      "type": "DRUG"
+    },
+    {
+      "id": 78,
+      "name": "chronic obstructive pulmonary disease",
+      "type": "DISEASE"
+    },
+    {
+      "id": 79,
+      "name": "sertraline",
+      "type": "DRUG"
+    },
+    {
+      "id": 80,
+      "name": "depression",
+      "type": "DISEASE"
+    },
+    {
+      "id": 81,
+      "name": "fluoxetine",
+      "type": "DRUG"
+    },
+    {
+      "id": 82,
+      "name": "escitalopram",
+      "type": "DRUG"
+    },
+    {
+      "id": 83,
+      "name": "anxiety disorder",
+      "type": "DISEASE"
+    },
+    {
+      "id": 84,
+      "name": "duloxetine",
+      "type": "DRUG"
+    },
+    {
+      "id": 85,
+      "name": "fibromyalgia",
+      "type": "DISEASE"
+    },
+    {
+      "id": 86,
+      "name": "gabapentin",
+      "type": "DRUG"
+    },
+    {
+      "id": 87,
+      "name": "chronic pain",
+      "type": "DISEASE"
+    },
+    {
+      "id": 88,
+      "name": "pregabalin",
+      "type": "DRUG"
+    },
+    {
+      "id": 89,
+      "name": "levodopa",
+      "type": "DRUG"
+    },
+    {
+      "id": 90,
+      "name": "parkinson's disease",
+      "type": "DISEASE"
+    },
+    {
+      "id": 91,
+      "name": "donepezil",
+      "type": "DRUG"
+    },
+    {
+      "id": 92,
+      "name": "alzheimer's disease",
+      "type": "DISEASE"
+    },
+    {
+      "id": 93,
+      "name": "memantine",
+      "type": "DRUG"
+    },
+    {
+      "id": 94,
+      "name": "riluzole",
+      "type": "DRUG"
+    },
+    {
+      "id": 95,
+      "name": "amyotrophic lateral sclerosis",
+      "type": "DISEASE"
+    },
+    {
+      "id": 96,
+      "name": "topiramate",
+      "type": "DRUG"
+    },
+    {
+      "id": 97,
+      "name": "migraine",
+      "type": "DISEASE"
+    },
+    {
+      "id": 98,
+      "name": "epilepsy",
+      "type": "DISEASE"
+    },
+    {
+      "id": 99,
+      "name": "lamotrigine",
+      "type": "DRUG"
+    },
+    {
+      "id": 100,
+      "name": "bipolar disorder",
+      "type": "DISEASE"
+    },
+    {
+      "id": 101,
+      "name": "valproate",
+      "type": "DRUG"
+    },
+    {
+      "id": 102,
+      "name": "carbamazepine",
+      "type": "DRUG"
+    },
+    {
+      "id": 103,
+      "name": "colchicine",
+      "type": "DRUG"
+    },
+    {
+      "id": 104,
+      "name": "gout",
+      "type": "DISEASE"
+    },
+    {
+      "id": 105,
+      "name": "allopurinol",
+      "type": "DRUG"
+    },
+    {
+      "id": 106,
+      "name": "naproxen",
+      "type": "DRUG"
+    },
+    {
+      "id": 107,
+      "name": "osteoarthritis",
+      "type": "DISEASE"
+    },
+    {
+      "id": 108,
+      "name": "celecoxib",
+      "type": "DRUG"
+    },
+    {
+      "id": 109,
+      "name": "omeprazole",
+      "type": "DRUG"
+    },
+    {
+      "id": 110,
+      "name": "gastroesophageal reflux disease",
+      "type": "DISEASE"
+    },
+    {
+      "id": 111,
+      "name": "finasteride",
+      "type": "DRUG"
+    },
+    {
+      "id": 112,
+      "name": "prostate cancer",
+      "type": "DISEASE"
+    },
+    {
+      "id": 113,
+      "name": "tamsulosin",
+      "type": "DRUG"
+    },
+    {
+      "id": 114,
+      "name": "latanoprost",
+      "type": "DRUG"
+    },
+    {
+      "id": 115,
+      "name": "glaucoma",
+      "type": "DISEASE"
+    },
+    {
+      "id": 116,
+      "name": "timolol",
+      "type": "DRUG"
+    },
+    {
+      "id": 117,
+      "name": "sildenafil",
+      "type": "DRUG"
+    },
+    {
+      "id": 118,
+      "name": "pulmonary hypertension",
+      "type": "DISEASE"
+    }
+  ],
+  "edges": [
+    {
+      "head": 0,
+      "relation": "associated_with",
+      "tail": 1,
+      "source": "literature",
+      "pmid": "36863017",
+      "sentence": "There are conflicting reports on results from several latest clinical trials regarding baricitinib use in COVID-19 management.",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9477792"
+    },
+    {
+      "head": 2,
+      "relation": "associated_with",
+      "tail": 3,
+      "source": "literature",
+      "pmid": "28293034",
+      "sentence": "Nintedanib, a tyrosine kinase inhibitor, is one of two drugs approved for the treatment of idiopathic pulmonary fibrosis.",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5531305/"
+    },
+    {
+      "head": 4,
+      "relation": "associated_with",
+      "tail": 5,
+      "source": "literature",
+      "pmid": "23316080",
+      "sentence": "The objective of this study was to evaluate the efficacy and safety of adalimumab plus methotrexate in Japanese patients with early rheumatoid arthritis.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23316080/"
+    },
+    {
+      "head": 6,
+      "relation": "associated_with",
+      "tail": 5,
+      "source": "literature",
+      "pmid": "23316080",
+      "sentence": "The objective of this study was to evaluate the efficacy and safety of adalimumab plus methotrexate in Japanese patients with early rheumatoid arthritis.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23316080/"
+    },
+    {
+      "head": 7,
+      "relation": "treats",
+      "tail": 8,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 9,
+      "relation": "treats",
+      "tail": 8,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 9,
+      "relation": "treats",
+      "tail": 10,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 11,
+      "relation": "treats",
+      "tail": 8,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 12,
+      "relation": "treats",
+      "tail": 8,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 12,
+      "relation": "treats",
+      "tail": 13,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 14,
+      "relation": "treats",
+      "tail": 13,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 15,
+      "relation": "treats",
+      "tail": 16,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 17,
+      "relation": "treats",
+      "tail": 16,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 18,
+      "relation": "treats",
+      "tail": 16,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 19,
+      "relation": "treats",
+      "tail": 20,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 21,
+      "relation": "treats",
+      "tail": 20,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 22,
+      "relation": "treats",
+      "tail": 20,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 23,
+      "relation": "treats",
+      "tail": 20,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 23,
+      "relation": "treats",
+      "tail": 24,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 25,
+      "relation": "treats",
+      "tail": 24,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 26,
+      "relation": "treats",
+      "tail": 24,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 27,
+      "relation": "treats",
+      "tail": 28,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 29,
+      "relation": "treats",
+      "tail": 28,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 30,
+      "relation": "treats",
+      "tail": 28,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 31,
+      "relation": "treats",
+      "tail": 32,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 33,
+      "relation": "treats",
+      "tail": 32,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 34,
+      "relation": "treats",
+      "tail": 35,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 36,
+      "relation": "treats",
+      "tail": 35,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 6,
+      "relation": "treats",
+      "tail": 5,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 4,
+      "relation": "treats",
+      "tail": 5,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 37,
+      "relation": "treats",
+      "tail": 5,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 38,
+      "relation": "treats",
+      "tail": 5,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 39,
+      "relation": "treats",
+      "tail": 5,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 4,
+      "relation": "treats",
+      "tail": 40,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 4,
+      "relation": "treats",
+      "tail": 41,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 37,
+      "relation": "treats",
+      "tail": 40,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 4,
+      "relation": "treats",
+      "tail": 42,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 38,
+      "relation": "treats",
+      "tail": 42,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 38,
+      "relation": "treats",
+      "tail": 43,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 44,
+      "relation": "treats",
+      "tail": 43,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 45,
+      "relation": "treats",
+      "tail": 5,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 45,
+      "relation": "treats",
+      "tail": 43,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 0,
+      "relation": "treats",
+      "tail": 5,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 39,
+      "relation": "treats",
+      "tail": 41,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 46,
+      "relation": "treats",
+      "tail": 3,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 2,
+      "relation": "treats",
+      "tail": 3,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 2,
+      "relation": "treats",
+      "tail": 47,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 48,
+      "relation": "treats",
+      "tail": 47,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 49,
+      "relation": "treats",
+      "tail": 47,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 49,
+      "relation": "treats",
+      "tail": 50,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 51,
+      "relation": "treats",
+      "tail": 50,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 51,
+      "relation": "treats",
+      "tail": 47,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 52,
+      "relation": "treats",
+      "tail": 53,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 54,
+      "relation": "treats",
+      "tail": 53,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 55,
+      "relation": "treats",
+      "tail": 53,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 56,
+      "relation": "treats",
+      "tail": 47,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 57,
+      "relation": "treats",
+      "tail": 53,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 58,
+      "relation": "treats",
+      "tail": 59,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 60,
+      "relation": "treats",
+      "tail": 61,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 62,
+      "relation": "treats",
+      "tail": 59,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 63,
+      "relation": "treats",
+      "tail": 61,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 63,
+      "relation": "treats",
+      "tail": 5,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 64,
+      "relation": "treats",
+      "tail": 42,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 64,
+      "relation": "treats",
+      "tail": 65,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 66,
+      "relation": "treats",
+      "tail": 40,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 67,
+      "relation": "treats",
+      "tail": 65,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 68,
+      "relation": "treats",
+      "tail": 65,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 68,
+      "relation": "treats",
+      "tail": 5,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 69,
+      "relation": "treats",
+      "tail": 65,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 69,
+      "relation": "treats",
+      "tail": 5,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 70,
+      "relation": "treats",
+      "tail": 1,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 71,
+      "relation": "treats",
+      "tail": 1,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 0,
+      "relation": "treats",
+      "tail": 1,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 72,
+      "relation": "treats",
+      "tail": 73,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 74,
+      "relation": "treats",
+      "tail": 73,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 75,
+      "relation": "treats",
+      "tail": 73,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 76,
+      "relation": "treats",
+      "tail": 73,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 77,
+      "relation": "treats",
+      "tail": 78,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 74,
+      "relation": "treats",
+      "tail": 78,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 79,
+      "relation": "treats",
+      "tail": 80,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 81,
+      "relation": "treats",
+      "tail": 80,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 82,
+      "relation": "treats",
+      "tail": 83,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 84,
+      "relation": "treats",
+      "tail": 80,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 84,
+      "relation": "treats",
+      "tail": 85,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 86,
+      "relation": "treats",
+      "tail": 87,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 88,
+      "relation": "treats",
+      "tail": 85,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 89,
+      "relation": "treats",
+      "tail": 90,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 91,
+      "relation": "treats",
+      "tail": 92,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 93,
+      "relation": "treats",
+      "tail": 92,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 94,
+      "relation": "treats",
+      "tail": 95,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 96,
+      "relation": "treats",
+      "tail": 97,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 96,
+      "relation": "treats",
+      "tail": 98,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 99,
+      "relation": "treats",
+      "tail": 98,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 99,
+      "relation": "treats",
+      "tail": 100,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 101,
+      "relation": "treats",
+      "tail": 98,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 102,
+      "relation": "treats",
+      "tail": 98,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 103,
+      "relation": "treats",
+      "tail": 104,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 105,
+      "relation": "treats",
+      "tail": 104,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 106,
+      "relation": "treats",
+      "tail": 107,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 108,
+      "relation": "treats",
+      "tail": 107,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 109,
+      "relation": "treats",
+      "tail": 110,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 111,
+      "relation": "treats",
+      "tail": 112,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 113,
+      "relation": "treats",
+      "tail": 112,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 114,
+      "relation": "treats",
+      "tail": 115,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 116,
+      "relation": "treats",
+      "tail": 115,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    },
+    {
+      "head": 117,
+      "relation": "treats",
+      "tail": 118,
+      "source": "curated",
+      "pmid": null,
+      "sentence": null,
+      "url": null
+    }
+  ]
+}

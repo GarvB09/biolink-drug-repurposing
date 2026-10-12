@@ -1,0 +1,296 @@
+{
+  "config": {
+    "embed_dim": 48,
+    "epochs": 400,
+    "margin": 2.0,
+    "lr": 0.01
+  },
+  "metrics": {
+    "TransE": {
+      "mean_rank": 19.66666603088379,
+      "mrr": 0.1601979285478592,
+      "hits@1": 0.06666667014360428,
+      "hits@3": 0.13333334028720856,
+      "hits@10": 0.2666666805744171,
+      "n_test": 15
+    },
+    "RotatE": {
+      "mean_rank": 18.866666793823242,
+      "mrr": 0.2044997215270996,
+      "hits@1": 0.13333334028720856,
+      "hits@3": 0.13333334028720856,
+      "hits@10": 0.4000000059604645,
+      "n_test": 15
+    }
+  },
+  "predictions": {
+    "TransE": {
+      "idiopathic pulmonary fibrosis": [
+        {
+          "drug": "cisplatin",
+          "score": -8.0518
+        },
+        {
+          "drug": "nivolumab",
+          "score": -9.2191
+        },
+        {
+          "drug": "sulfasalazine",
+          "score": -9.2349
+        },
+        {
+          "drug": "tamsulosin",
+          "score": -9.3984
+        },
+        {
+          "drug": "digoxin",
+          "score": -9.5538
+        }
+      ],
+      "rheumatoid arthritis": [
+        {
+          "drug": "clopidogrel",
+          "score": -6.6592
+        },
+        {
+          "drug": "digoxin",
+          "score": -6.8376
+        },
+        {
+          "drug": "cyclosporine",
+          "score": -6.8774
+        },
+        {
+          "drug": "tacrolimus",
+          "score": -6.9647
+        },
+        {
+          "drug": "fluoxetine",
+          "score": -7.0333
+        }
+      ],
+      "type 2 diabetes": [
+        {
+          "drug": "cisplatin",
+          "score": -6.9286
+        },
+        {
+          "drug": "tamsulosin",
+          "score": -7.9494
+        },
+        {
+          "drug": "budesonide",
+          "score": -8.2023
+        },
+        {
+          "drug": "trastuzumab",
+          "score": -8.2345
+        },
+        {
+          "drug": "digoxin",
+          "score": -8.2891
+        }
+      ],
+      "covid-19": [
+        {
+          "drug": "fluoxetine",
+          "score": -7.7006
+        },
+        {
+          "drug": "apixaban",
+          "score": -7.919
+        },
+        {
+          "drug": "colchicine",
+          "score": -8.2322
+        },
+        {
+          "drug": "trastuzumab",
+          "score": -8.2921
+        },
+        {
+          "drug": "atorvastatin",
+          "score": -8.4197
+        }
+      ],
+      "breast cancer": [
+        {
+          "drug": "tamsulosin",
+          "score": -8.283
+        },
+        {
+          "drug": "topiramate",
+          "score": -8.5909
+        },
+        {
+          "drug": "sulfasalazine",
+          "score": -8.696
+        },
+        {
+          "drug": "clopidogrel",
+          "score": -8.7497
+        },
+        {
+          "drug": "fluoxetine",
+          "score": -8.7758
+        }
+      ],
+      "alzheimer's disease": [
+        {
+          "drug": "sulfasalazine",
+          "score": -9.7382
+        },
+        {
+          "drug": "colchicine",
+          "score": -9.8608
+        },
+        {
+          "drug": "finasteride",
+          "score": -9.865
+        },
+        {
+          "drug": "tacrolimus",
+          "score": -9.9141
+        },
+        {
+          "drug": "topiramate",
+          "score": -9.9312
+        }
+      ]
+    },
+    "RotatE": {
+      "idiopathic pulmonary fibrosis": [
+        {
+          "drug": "topiramate",
+          "score": -10.1279
+        },
+        {
+          "drug": "fluoxetine",
+          "score": -10.3881
+        },
+        {
+          "drug": "trastuzumab",
+          "score": -10.8901
+        },
+        {
+          "drug": "furosemide",
+          "score": -10.9523
+        },
+        {
+          "drug": "digoxin",
+          "score": -10.9624
+        }
+      ],
+      "rheumatoid arthritis": [
+        {
+          "drug": "furosemide",
+          "score": -7.1815
+        },
+        {
+          "drug": "tacrolimus",
+          "score": -7.634
+        },
+        {
+          "drug": "digoxin",
+          "score": -7.6602
+        },
+        {
+          "drug": "clopidogrel",
+          "score": -7.9045
+        },
+        {
+          "drug": "tamsulosin",
+          "score": -8.1124
+        }
+      ],
+      "type 2 diabetes": [
+        {
+          "drug": "tacrolimus",
+          "score": -9.4302
+        },
+        {
+          "drug": "trastuzumab",
+          "score": -9.731
+        },
+        {
+          "drug": "fluoxetine",
+          "score": -9.8522
+        },
+        {
+          "drug": "tamsulosin",
+          "score": -9.9702
+        },
+        {
+          "drug": "cyclosporine",
+          "score": -10.0696
+        }
+      ],
+      "covid-19": [
+        {
+          "drug": "trastuzumab",
+          "score": -10.7345
+        },
+        {
+          "drug": "tamsulosin",
+          "score": -11.1569
+        },
+        {
+          "drug": "metformin",
+          "score": -11.2543
+        },
+        {
+          "drug": "fluoxetine",
+          "score": -11.3258
+        },
+        {
+          "drug": "tacrolimus",
+          "score": -11.4474
+        }
+      ],
+      "breast cancer": [
+        {
+          "drug": "furosemide",
+          "score": -11.1818
+        },
+        {
+          "drug": "methotrexate",
+          "score": -11.4099
+        },
+        {
+          "drug": "valproate",
+          "score": -11.4759
+        },
+        {
+          "drug": "tacrolimus",
+          "score": -11.5618
+        },
+        {
+          "drug": "topiramate",
+          "score": -11.732
+        }
+      ],
+      "alzheimer's disease": [
+        {
+          "drug": "trastuzumab",
+          "score": -11.6005
+        },
+        {
+          "drug": "sertraline",
+          "score": -11.7144
+        },
+        {
+          "drug": "tamsulosin",
+          "score": -11.7635
+        },
+        {
+          "drug": "topiramate",
+          "score": -12.0077
+        },
+        {
+          "drug": "fluoxetine",
+          "score": -12.1579
+        }
+      ]
+    }
+  }
+}

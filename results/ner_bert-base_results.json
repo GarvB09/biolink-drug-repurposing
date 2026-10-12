@@ -1,0 +1,32 @@
+{
+  "precision": 0.8505205264191711,
+  "recall": 0.882862677133245,
+  "f1": 0.8663898754439497,
+  "Chemical": {
+    "precision": 0.9025902955125866,
+    "recall": 0.9188486536675952,
+    "f1-score": 0.9106469126713904
+  },
+  "Disease": {
+    "precision": 0.7897872340425532,
+    "recall": 0.8390596745027125,
+    "f1-score": 0.8136782113108286
+  },
+  "train_seconds": 1921,
+  "infer_seconds": 110,
+  "epochs": 2,
+  "lr": 5e-05,
+  "batch_size": 16,
+  "max_len": 192,
+  "checkpoint": "bert-base-cased",
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.15445662175603667
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.03427205481631221
+    }
+  ]
+}

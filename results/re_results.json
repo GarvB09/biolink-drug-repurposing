@@ -1,0 +1,46 @@
+{
+  "Same-sentence co-occurrence": {
+    "precision": 0.3094745552337609,
+    "recall": 0.701688555347092,
+    "f1": 0.4295147861039334
+  },
+  "Abstract co-occurrence (all pairs)": {
+    "precision": 0.19722479185938946,
+    "recall": 1.0,
+    "f1": 0.3294699428218204
+  },
+  "TF-IDF + logistic regression": {
+    "precision": 0.4078245406046236,
+    "recall": 0.6454033771106942,
+    "f1": 0.4998183799491464,
+    "threshold": 0.44000000000000006,
+    "train_seconds": 0.8
+  },
+  "PubMedBERT pair classifier": {
+    "precision": 0.501269035532995,
+    "recall": 0.7410881801125704,
+    "f1": 0.5980317940953823,
+    "threshold": 0.21000000000000002,
+    "train_seconds": 2255,
+    "history": [
+      {
+        "epoch": 1,
+        "train_loss": 0.4180920872885241,
+        "dev_f1": 0.5742320819112628,
+        "threshold": 0.38000000000000006
+      },
+      {
+        "epoch": 2,
+        "train_loss": 0.25989751914338044,
+        "dev_f1": 0.5921375921375921,
+        "threshold": 0.21000000000000002
+      }
+    ],
+    "epochs": 2,
+    "lr": 3e-05,
+    "batch_size": 16,
+    "max_len": 256,
+    "same_sentence_f1": 0.6590909090909091,
+    "cross_sentence_f1": 0.45591939546599497
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "precision": 0.896140350877193,
+  "recall": 0.9113059435212559,
+  "f1": 0.9036595228467449,
+  "Chemical": {
+    "precision": 0.940398584466381,
+    "recall": 0.9376044568245125,
+    "f1-score": 0.9389994420680677
+  },
+  "Disease": {
+    "precision": 0.8445505861919236,
+    "recall": 0.8792947558770343,
+    "f1-score": 0.8615725359911406
+  },
+  "train_seconds": 1726,
+  "infer_seconds": 89,
+  "epochs": 2,
+  "lr": 5e-05,
+  "batch_size": 16,
+  "max_len": 192,
+  "checkpoint": "microsoft/BiomedNLP-BiomedBERT-base-uncased-abstract-fulltext",
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.164689406127695
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.033414453161778844
+    }
+  ]
+}

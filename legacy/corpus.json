@@ -1,0 +1,26 @@
+[
+  {
+    "pmid": "36863017",
+    "title": "Does baricitinib reduce mortality and disease progression in SARS-CoV-2 virus infected patients? A systematic review and meta-analysis",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9477792",
+    "abstract": "There are conflicting reports on results from several latest clinical trials regarding baricitinib use in COVID-19 management. This systematic review and meta-analysis evaluated baricitinib's efficacy in such patients. Databases including ScienceDirect, PubMed/Medline, and clinical trial registries were searched comprehensively. Fifteen articles meeting inclusion criteria underwent qualitative and quantitative analysis. Meta-analyses revealed that both randomized controlled trials and non-randomized trials significantly reduced mortality in patients with COVID-19. Regarding disease progression, baricitinib did not significantly reduce progression in randomized trials, but non-randomized trials showed a significant reduction. The analysis concluded that baricitinib statistically significantly reduced mortality rate and disease progression in COVID-19 patients."
+  },
+  {
+    "pmid": "28293034",
+    "title": "Clinical use of nintedanib in patients with idiopathic pulmonary fibrosis",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5531305/",
+    "abstract": "Idiopathic pulmonary fibrosis is a rare lung disease characterised by progressive loss of lung function, dyspnoea and cough. Idiopathic pulmonary fibrosis has a variable clinical course but a poor prognosis. Nintedanib, a tyrosine kinase inhibitor, is one of two drugs approved for the treatment of idiopathic pulmonary fibrosis. In clinical trials, nintedanib slowed disease progression by reducing the rate of decline in forced vital capacity in patients with idiopathic pulmonary fibrosis and mild or moderate lung function impairment. The effect of nintedanib was consistent across patient subgroups defined by baseline characteristics. The adverse events most commonly associated with nintedanib, both in clinical trials and real-world clinical practice, are mild gastrointestinal events, particularly diarrhoea."
+  },
+  {
+    "pmid": "24761787",
+    "title": "Repurposing Old Drugs to Chemoprevention: The Case of Metformin",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4789107",
+    "abstract": "Multiple epidemiologic studies have documented an association between the anti-diabetic agent metformin and reduced cancer incidence and mortality. However, this effect has not been consistently demonstrated in animal models or more recent epidemiological studies. This paper examines metformin's chemopreventive potential by reviewing relevant mechanisms of action, preclinical evidence of efficacy, updated epidemiologic evidence, and recently completed and ongoing clinical trials. Although repurposing drugs with well described mechanisms of action and safety profiles is an appealing strategy for cancer prevention, there is no substitute for well executed late phase clinical trials to define efficacy and populations that are most likely to benefit from an intervention."
+  },
+  {
+    "pmid": "23316080",
+    "title": "Adalimumab, a human anti-TNF monoclonal antibody, outcome study for the prevention of joint damage in Japanese patients with early rheumatoid arthritis: the HOPEFUL 1 study",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/23316080/",
+    "abstract": "The objective of this study was to evaluate the efficacy and safety of adalimumab plus methotrexate in Japanese patients with early rheumatoid arthritis. The study compared adalimumab 40 mg every other week plus methotrexate versus methotrexate alone for 26 weeks. Adalimumab plus methotrexate significantly inhibited radiographic progression at week 26 versus methotrexate alone, with 62 percent of patients showing no progression versus 35.4 percent. The combination therapy was well tolerated and efficacious in suppressing radiographic progression and improving clinical outcomes in patients with rheumatoid arthritis."
+  }
+]
