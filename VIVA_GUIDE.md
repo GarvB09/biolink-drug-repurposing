@@ -214,7 +214,7 @@ Larger corpora (BioRED, PubTator), end-to-end evaluation, document-level relatio
 13. *Why no stop-word removal or stemming?* Function words carry relation cues ("induced by"); word-piece tokenisation handles inflection.
 
 **Preprocessing**
-P1. *Did you do stop-word removal, stemming, lemmatisation, POS tagging?* Yes — as a measured study on the TF-IDF relation model (Table 8 in the report). Lemmatisation +1.7 F1, stemming +0.8, stop-word removal 0.
+P1. *Did you do stop-word removal, stemming, lemmatisation, POS tagging?* Yes — as a measured study on the TF-IDF relation model (Table 7 in the report). Lemmatisation +1.7 F1, stemming +0.8, stop-word removal 0.
 P2. *Why does stop-word removal not help?* Words like "by", "in", "no", "not" carry relation cues ("induced by", "no evidence of"); removing them throws away signal. Keeping negations recovers half a point.
 P3. *Why lemmatisation over stemming?* Lemmas are real words ("induce", "hypotension"); Porter stemming over-cuts biomedical terms ("hypotens", "volum").
 P4. *Why not apply these to BERT?* Its word-piece vocabulary was learned on raw text; changing words would create inputs it never saw.
