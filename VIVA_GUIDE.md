@@ -6,57 +6,51 @@ Everything you need to explain, defend and demo this project. Read sections 1–
 
 ## 1. The 60-second pitch
 
-**BioLink** turns biomedical text and a biomedical knowledge graph into **drug-repurposing hypotheses**. It has three stages, each trained and scored on a public benchmark:
+**BioLink** reads biomedical abstracts and extracts structured facts from them. It has two NLP stages, each trained and scored on a public benchmark:
 
-1. **NER** – find *chemical* and *disease* mentions in PubMed abstracts (BC5CDR corpus).
-2. **Relation extraction (RE)** – decide whether a chemical **induces** a disease in the abstract (BC5CDR CID relation).
-3. **Link prediction** – on the Hetionet knowledge graph, rank diseases a drug might **treat** (TransE, DistMult, RotatE written from scratch in PyTorch).
+1. **Named Entity Recognition (NER)** – find *chemical* and *disease* mentions in PubMed abstracts (BC5CDR corpus).
+2. **Relation extraction (RE)** – decide whether a chemical **induces** a disease (BC5CDR "CID" relation).
 
-A web app lets you search a disease and see known treatments, ranked predicted drugs, a local graph, literature associations and the evaluation tables.
+A web app lets you search a disease or chemical and see the relations the pipeline extracted, with the evidence sentence and a PubMed link.
 
-**Headline results (test data):** PubMedBERT NER **90.4 F1** (CRF 83.0, BERT-base 86.6, dictionary 77.1) · RE **59.8 F1** (TF-IDF+LR 50.0) · link prediction RotatE **MRR 0.349** (popularity baseline 0.132).
+**Headline results (test data):** PubMedBERT NER **90.4 F1** (CRF 83.0, BERT-base 86.6, dictionary 77.1) · relation extraction **59.8 F1** (TF-IDF+LR 50.0, same-sentence co-occurrence 43.0).
 
-**What to say about novelty (be modest and accurate):** not a new model — a reproducible, CPU-only pipeline where all three stages are evaluated on public benchmarks against matched baselines (including a general-vs-biomedical encoder ablation), served through one interface.
+**Novelty (be modest and accurate):** not a new model — a reproducible, CPU-only pipeline where both stages are evaluated on a public benchmark against matched baselines (including a general-vs-biomedical encoder ablation), served through a search interface with evidence.
 
 ---
 
 ## 2. Why this problem? (motivation)
 
-- Drug development: ~10 years, >$1B, most candidates fail. **Repurposing** existing drugs is cheaper because safety data exist (Pushpakom et al., 2019).
-- The evidence is spread across millions of abstracts and databases → need **NLP** (NER, RE) to extract facts and **graph ML** (link prediction) to infer missing ones.
-- **Research gap:** papers usually evaluate one stage; demos use a few hand-picked examples; KG-embedding results vary with training setup (Ali et al., 2022) so they must be re-trained under one protocol. We do all stages, on benchmarks, with baselines.
+- Biomedical knowledge (which drug causes which disease/side effect) is buried in millions of abstracts; nobody can read it all. NLP can extract it automatically.
+- Extraction needs two steps: find the entities (NER), then decide how they relate (RE).
+- **Research gap:** many papers evaluate a single stage, or demo on a few hand-picked examples. We evaluate both stages on a benchmark with simple baselines and a domain-pretraining ablation.
 
 ## 3. Big picture
 
 ```
-BC5CDR abstracts ──► preprocess ──► NER (Dictionary / CRF / BERT / PubMedBERT) ──► RE (co-occurrence / TF-IDF+LR / PubMedBERT) ──► literature associations ─┐
-                                                                                                                                                              ├─► Query web app
-Hetionet triples ──► KG embedding (TransE / DistMult / RotatE) ──► ranked candidate drugs per disease ───────────────────────────────────────────────────────┘
+BC5CDR abstracts ──► preprocess ──► NER (Dictionary / CRF / BERT / PubMedBERT) ──► Relation extraction (co-occurrence / TF-IDF+LR / PubMedBERT) ──► Search app
 ```
-
-Two **independent tracks** (text and graph). They are shown side by side in the app; they are **not merged** into one graph (BC5CDR uses MeSH IDs, Hetionet uses DrugBank/Disease-Ontology IDs, no mapping was built). Say this proactively — it is the honest limitation.
 
 ### Folder map
 ```
 scripts/common.py        shared paths + BC5CDR parsing, tokenising, sentence splitting, BIO tags
-scripts/prepare_data.py  builds NER data, RE candidate pairs, Hetionet train/valid/test; writes dataset_stats.json
+scripts/prepare_data.py  builds NER data and RE candidate pairs; writes dataset_stats.json
 scripts/ner_classic.py   dictionary + CRF NER, strict F1 evaluation
 scripts/ner_bert.py      fine-tunes BERT-base / PubMedBERT token classifier
 scripts/relations.py     RE baselines + PubMedBERT pair classifier
-scripts/linkpred.py      TransE / DistMult / RotatE + baselines + filtered ranking evaluation
 scripts/build_app.py     generates app/index.html from the results files
-scripts/run_all.sh       runs the whole experiment queue (skips finished steps)
+scripts/run_all.sh       runs the experiment queue (skips finished steps)
 app/index.html           single-file web app (+ _base.html = CSS and vis-network shell)
 results/                 all metrics JSON, predictions, logs, screenshot
-legacy/                  the earlier 4-abstract demo (kept for reference only)
+legacy/                  the earlier 4-abstract demo (reference only)
 ```
-`data/raw` (downloaded datasets), `data/processed` and `models/` (1.3 GB checkpoints) are **not** in git; they are regenerated by the scripts.
+`data/raw`, `data/processed` and `models/` (checkpoints) are **not** in git; the scripts regenerate them.
 
 ---
 
-## 4. Datasets (know these cold)
+## 4. Dataset (know this cold)
 
-### 4.1 BC5CDR (BioCreative V Chemical–Disease Relation corpus; Li et al., 2016)
+### BC5CDR (BioCreative V Chemical–Disease Relation corpus; Li et al., 2016)
 - **1,500 PubMed abstracts**, English, split by the organisers **500 train / 500 dev / 500 test**.
 - Gold **Chemical** and **Disease** mentions with character offsets, each normalised to a **MeSH ID**.
 - Gold **CID** (Chemical-Induced-Disease) relations at **abstract level** between (chemical ID, disease ID).
@@ -70,13 +64,8 @@ legacy/                  the earlier 4-abstract demo (kept for reference only)
 
 About 70–73% of positive pairs have both mentions in one sentence; ~30% are cross-sentence (hard).
 
-### 4.2 Hetionet v1.0 (Himmelstein et al., 2017)
-- Integrative KG built from 29 public sources; full graph 47,031 nodes / 2,250,197 edges; **CC0** licence.
-- We keep 14 relation types around Compounds/Diseases (treats, palliates, binds, up/down-regulates, causes side effect, resembles, includes, associates, localizes, presents …) → **234,512 triples, 21,646 entities** (13,113 genes, 5,701 side effects, 1,538 compounds, 415 symptoms, 398 anatomy, 345 pharmacologic classes, **136 diseases**).
-- The **755 Compound-treats-Disease (CtD)** edges are split **80/10/10 → 603 train / 76 valid / 76 test** (seed 42). All other edges stay in training.
-
-### 4.3 What was wrong with the original demo (why we changed it)
-It used 4 abstracts, a hand-written lexicon for NER, ~106 hand-curated edges, and no benchmark → nothing could be evaluated honestly. That is archived in `legacy/`.
+### What was wrong with the original demo (why we changed it)
+It used 4 abstracts, a hand-written lexicon for NER and hand-curated edges → nothing could be evaluated honestly. That version is archived in `legacy/`.
 
 ---
 
@@ -91,9 +80,8 @@ It used 4 abstracts, a hand-written lexicon for NER, ~106 hand-curated edges, an
 - `write_json` has a `default=` handler because seqeval/numpy return numpy floats (this caused a crash early on).
 
 ### 5.2 `prepare_data.py` — Stage 0
-- `prepare_bc5cdr()`: for each split writes `bc5cdr_*.json` (docs), `ner_*.json` (one row per sentence: tokens, offsets, tags) and `re_*.json` (candidate pairs).
+For each split writes `bc5cdr_*.json` (docs), `ner_*.json` (one row per sentence: tokens, offsets, tags) and `re_*.json` (candidate pairs).
 - **RE candidates:** group mentions by (type, MeSH id); every chemical-ID × disease-ID in an abstract is a candidate; `label=1` if (chem,dis) is in the gold CID set; `same_sentence` flag; most common surface form kept as the name. Check printed: `relations_without_candidate = 0` (every gold relation has a candidate).
-- `prepare_hetionet()`: reads node and edge files, keeps 14 metaedges, renames them (`CtD→treats`, …), shuffles CtD edges with `random.Random(42)`, splits 80/10/10, writes `kg/train|valid|test.tsv` and `entities.json`.
 
 ### 5.3 `ner_classic.py` — Stage 1a (baselines)
 **Dictionary:** a gazetteer of every mention string in train+dev (lower-cased token tuples → type). Longest-match-first (up to 12 tokens). Single tokens of ≤2 characters are ignored. High precision, low recall (cannot generalise to unseen names).
@@ -120,29 +108,11 @@ Task: for each (chemical ID, disease ID) pair in an abstract → is it a CID rel
 - Extra analysis: F1 split into same-sentence (65.9) vs cross-sentence (45.6).
 - Scoring: pair-level P/R/F1 with **gold entities** (the official CID setting).
 
-### 5.6 `linkpred.py` — Stage 3
-Task: given compound *h*, rank all **136 diseases** *t* for the relation `treats`.
+### 5.6 `build_app.py` and `app/index.html`
+Pure static page (works offline, `file://`). The script embeds the PubMedBERT relation predictions for the 500 test abstracts (pairs above the tuned threshold, 1,576 of them) plus the metric tables as one JS object and writes the HTML (CSS and the vis-network library come from `_base.html`). The JS: search a disease or chemical name → list the extracted relations with the evidence sentence, probability, a "matches gold" badge if the pair is also in the human annotation, and a PubMed link; a small graph of the query and its related entities; tabs with the Relation and NER evaluation tables.
 
-Three models (all from scratch; `KGE` class). Higher score = more plausible. γ = margin = 9; embeddings initialised uniformly in ±(γ+2)/dim.
-| Model | Score | Idea |
-|---|---|---|
-| **TransE** | γ − ‖h + r − t‖₁ | relation = translation vector |
-| **DistMult** | Σ h·r·t (trilinear) | relation = diagonal bilinear form |
-| **RotatE** | γ − Σ \|h ∘ r − t\| in complex space, r = e^{iθ} | relation = rotation (can model symmetry, antisymmetry, inversion, composition; Sun et al., 2019) |
-
-- **Training:** Adam lr 1e-3, batch 4,096, dim 128 (RotatE: 128 complex = 256 real), **32 negatives per positive** (corrupt head or tail with prob 0.5, uniform over all entities), **40 epochs**.
-  - TransE/RotatE loss = **self-adversarial negative sampling**: `−[log σ(pos) + Σ w_i log σ(−neg_i)] / 2`, weights `w = softmax(T · neg_score)` with T=1 — harder negatives get more weight.
-  - DistMult loss = logistic loss (softplus) + tiny L2.
-- **Validation** every 10 epochs on the 76 validation CtD edges; best-MRR checkpoint kept (it was epoch 40 for all three → models still improving = under-trained).
-- **Evaluation (`evaluate`)** — *filtered tail ranking*: for each test edge (compound, treats, disease), score all 136 diseases; **mask the other diseases the compound is already known to treat** (in train/valid/test) so true alternatives don't count as errors; rank = 1 + number of diseases scoring higher. Metrics: **MR** (mean rank, lower better), **MRR** (mean of 1/rank), **Hits@1/3/10**.
-- **Baselines:** *Random* and *Popularity* (score each disease by how many compounds treat it in training).
-- Outputs `kg_predictions.json`: per disease, top-15 compounds with `known` (in training) and `held_out_true` (hidden valid/test edge) flags, plus the list of known treatments.
-
-### 5.7 `build_app.py` and `app/index.html`
-Pure static page (works offline, `file://`). The script embeds the results as one JS object and writes the HTML (CSS and the vis-network library come from `_base.html`). The JS: search → look up the disease → render known treatments, top-10 novel candidates (with "held-out true" badge), local graph (vis-network), tabs for link-prediction / RE / NER tables, and literature associations (RE predictions on test abstracts whose disease name matches the query; matching is a simple substring rule, so it can be loose).
-
-### 5.8 `run_all.sh`
-Runs: PubMedBERT NER → RE → link prediction → BERT-base NER, each skipped if its result file exists (safe to resume after a crash). Environment variables `RE_EPOCHS`, `KGE_EPOCHS`, `KGE_EVAL_EVERY` set the short CPU schedule.
+### 5.7 `run_all.sh`
+Runs: PubMedBERT NER → relation extraction → BERT-base NER, each skipped if its result file exists (safe to resume after a crash). `ner_classic.py` (dictionary + CRF) is run separately. Environment variable `RE_EPOCHS` sets the relation-extraction epochs.
 
 ---
 
@@ -164,16 +134,7 @@ Runs: PubMedBERT NER → RE → link prediction → BERT-base NER, each skipped 
 | TF-IDF + LR | 40.8 | 64.5 | 50.0 |
 | **PubMedBERT** | 50.1 | 74.1 | **59.8** (same-sentence 65.9, cross-sentence 45.6) |
 
-**Link prediction (filtered, 76 test edges)**
-| Model | MRR | MR | H@1 | H@3 | H@10 |
-|---|---|---|---|---|---|
-| Random | 0.044 | 69.4 | 1.3 | 2.6 | 5.3 |
-| Popularity | 0.132 | 25.0 | 2.6 | 14.5 | 36.8 |
-| DistMult | 0.115 | 35.4 | 2.6 | 9.2 | 34.2 |
-| TransE | 0.258 | 20.3 | 14.5 | 27.6 | 51.3 |
-| **RotatE** | **0.349** | 17.2 | 26.3 | 36.8 | 53.9 |
-
-**How to interpret:** PubMedBERT > BERT-base by 3.7 F1 (biomedical pretraining helps, mostly on diseases); transformers beat CRF mainly via **recall**; RE is hardest across sentences; RotatE ≈ 2.6× the popularity baseline; DistMult did **not** beat popularity (its validation MRR stayed flat at ~0.13 from epoch 10–40, so it most likely did not train well under our shared untuned settings — we did not investigate further; don't over-claim a reason).
+**How to interpret:** PubMedBERT > BERT-base by 3.7 F1 (biomedical pretraining helps, mostly on diseases); transformers beat the CRF mainly through **recall**; relation extraction is hardest across sentences.
 
 ---
 
@@ -181,103 +142,89 @@ Runs: PubMedBERT NER → RE → link prediction → BERT-base NER, each skipped 
 
 | Decision | Reason |
 |---|---|
-| BC5CDR + Hetionet | public, standard, official splits, reproducible |
+| BC5CDR | public, standard, official splits, reproducible |
 | Strict entity F1 (seqeval) | the standard; no partial credit |
 | NER trained on train+dev, fixed schedule | follows BioBERT/PubMedBERT practice; test touched once |
 | RE threshold tuned on dev only | avoids tuning on test |
 | Gold entities for RE | the official CID task setting; makes RE separable from NER |
 | Length bucketing, 2 epochs | made CPU-only training feasible (~30 min per model) |
-| Filtered ranking | standard KG evaluation; stops penalising other true answers |
-| 40 epochs, no tuning | time limit; stated openly as a limitation |
 | BioBERT not run | time; BERT-base vs PubMedBERT already shows the domain effect |
-| Text and graph kept separate | no MeSH↔DrugBank/DOID mapping built |
 | Word-piece first-token labelling | standard BERT token-classification practice |
+| No stop-word removal / stemming | function words carry relation cues ("induced by"); word-pieces handle inflection |
 
 ---
 
 ## 8. Honest limitations (say these before they are asked)
 1. **Single run, single seed** for all models, no confidence intervals.
-2. **76 test edges** only for link prediction → TransE vs RotatE ordering is suggestive, not conclusive.
-3. **RE uses gold entities**; real end-to-end performance would be lower (NER errors propagate). Not evaluated end-to-end.
-4. **Cross-sentence RE is weak** (45.6 F1); no document-level model.
-5. **TransE/RotatE under-trained** (validation MRR still rising at epoch 40).
-6. **Two sources not merged** (different ID systems).
-7. **Possible shortcut in Hetionet:** other training relations such as `palliates` (compound–disease) are closely related to `treats`, so the model may exploit them. This is legitimate graph signal but worth knowing; Hetionet is also frozen at 2017, so newer indications are missing.
-8. **Predictions are hypotheses**, not clinical advice. "Held-out true" only shows the model recovers hidden *known* edges, not that new suggestions work.
-9. Sentences > 192 word-pieces are truncated in NER; sentence splitter is rule-based.
-10. The "literature associations" panel shows *adverse-effect* (induced-disease) pairs, not treatment evidence, and its disease matching is a loose substring rule.
+2. **RE uses gold entities**; real end-to-end performance would be lower (NER errors propagate). Not evaluated end to end.
+3. **Cross-sentence RE is weak** (45.6 F1); no document-level model.
+4. **Short CPU schedules** (2 epochs), no hyper-parameter search.
+5. Only chemicals and diseases; 1,500 abstracts from a 2015 shared task; no genes, full text or other domains.
+6. Sentences > 192 word-pieces are truncated in NER; the sentence splitter is rule-based.
+7. The app shows model predictions on the **test** abstracts only; "extracted" pairs that are not in the gold annotation may be errors or simply un-annotated.
+8. The relations are adverse-effect (induced-disease) associations, not treatment evidence.
 
 ## 9. What I would do next
-Entity normalisation (MeSH ↔ DrugBank/DOID) to merge text-derived edges into the KG; BioRED/PubTator-scale data; end-to-end evaluation; document-level RE; multiple seeds + tuning; time-split evaluation on newly approved indications; GNN encoders; explanations (graph paths + supporting sentences).
+Larger corpora (BioRED, PubTator), end-to-end evaluation, document-level relation extraction, entity normalisation (link mentions to MeSH IDs), multiple seeds and tuning, comparison with few-shot LLM extraction, building a knowledge graph from the extracted relations.
 
 ---
 
 ## 10. Likely viva questions with answers
 
 **Basics**
-1. *What is NER / RE / link prediction?* NER tags spans as entity types; RE decides the relation between two entities; link prediction scores missing edges of a knowledge graph.
+1. *What is NER / RE?* NER tags spans of text as entity types; RE decides the relation between two entities.
 2. *What is IOB2 tagging?* `B-` marks the first token of an entity, `I-` continues it, `O` is outside; e.g. "kidney failure" → `B-Disease I-Disease`.
-3. *What is a knowledge graph triple?* (head, relation, tail), e.g. (metformin, treats, type 2 diabetes).
-4. *What is drug repurposing?* Finding new indications for existing approved drugs.
+3. *What does "chemical-induced disease" mean?* The chemical causes the disease (an adverse effect), e.g. cisplatin → nephrotoxicity.
 
 **Data**
-5. *Why BC5CDR?* Standard, official split, gold entities + relations with MeSH IDs.
-6. *What is the label distribution in RE?* ~19.7% positive (1,066 of 5,405 test pairs); hence precision/recall/F1, not accuracy.
-7. *Why not accuracy?* Always predicting "no relation" gives ~80% accuracy and is useless.
-8. *Licences?* Hetionet CC0; BC5CDR is distributed for research use. Raw data are not committed; the README explains how to download them.
+4. *Why BC5CDR?* Standard, official split, gold entities + relations with MeSH IDs.
+5. *What is the label distribution in RE?* ~19.7% positive (1,066 of 5,405 test pairs); hence precision/recall/F1, not accuracy.
+6. *Why not accuracy?* Always predicting "no relation" gives ~80% accuracy and is useless.
+7. *Licence?* BC5CDR is distributed for research use; raw data are not committed — the README explains how to download them.
 
 **NER**
-9. *Why does PubMedBERT beat BERT-base?* Pretrained on PubMed text with a biomedical vocabulary → chemical/disease names split into fewer, more meaningful word-pieces; +3.7 F1 here. (Single run, so the exact gap is uncertain.)
-10. *Why CRF over softmax-per-token?* Models tag transitions and decodes the best sequence jointly.
-11. *Why is the dictionary precise but low recall?* It only knows names seen in training.
-12. *What does strict F1 mean?* Exact type and boundary match; F1 = 2PR/(P+R).
-13. *How do you handle word-pieces?* Label on first sub-token, `-100` on the rest, predict from first sub-token.
-14. *Why no stop-word removal or stemming?* Function words carry relation cues ("induced by"); word-piece tokenisation handles inflection.
+8. *Why does PubMedBERT beat BERT-base?* Pretrained on PubMed text with a biomedical vocabulary → chemical/disease names split into fewer, more meaningful word-pieces; +3.7 F1 here. (Single run, so the exact gap is uncertain.)
+9. *Why CRF over softmax-per-token?* Models tag transitions and decodes the best sequence jointly.
+10. *Why is the dictionary precise but low recall?* It only knows names seen in training.
+11. *What does strict F1 mean?* Exact type and boundary match; F1 = 2PR/(P+R).
+12. *How do you handle word-pieces?* Label on first sub-token, `-100` on the rest, predict from first sub-token.
+13. *Why no stop-word removal or stemming?* Function words carry relation cues ("induced by"); word-piece tokenisation handles inflection.
 
 **Relation extraction**
-15. *How do you tell the model which pair to classify?* Entity markers `[C]…[/C]`, `[D]…[/D]`.
-16. *Why is precision only 50%?* Threshold chosen on dev favours recall; cross-sentence and negation cases are hard; no tuning.
-17. *Why is cross-sentence weaker?* Evidence is spread across sentences and our context window is the span between mentions; a document-level model would be needed.
-18. *Is 59.8 F1 good?* It beats all baselines clearly, but we make no claim to match the best published systems.
-
-**Link prediction**
-19. *Explain TransE / DistMult / RotatE.* See §5.6 table.
-20. *Why is RotatE better?* Rotations can model symmetric, antisymmetric, inverse and composed relations (Sun et al., 2019); we did not run an ablation to prove that is the reason here.
-21. *What is the filtered setting?* Remove other known-true answers from the ranking so they are not counted as mistakes.
-22. *MRR vs Hits@K?* MRR = average of 1/rank (rewards high ranks); Hits@K = fraction of cases with the true answer in top K.
-23. *What is self-adversarial sampling?* Weight negatives by their current score so harder negatives matter more.
-24. *Why a popularity baseline?* Some diseases have many treatments; ranking by frequency alone is a strong, honest baseline. Learned models must beat it.
-25. *Why did DistMult fail?* Honest answer: its validation MRR stayed flat; likely optimisation/hyper-parameters under shared settings; not investigated.
-26. *Did test data leak into training?* Held-out CtD edges were removed from training. Filtering uses known true edges only for masking. Other relations (e.g. `palliates`) stay and are a legitimate but notable signal.
-27. *Why only 76 test edges?* Hetionet has only 755 CtD edges; 10% held out.
+14. *How do you tell the model which pair to classify?* Entity markers `[C]…[/C]`, `[D]…[/D]`.
+15. *Why is precision only 50%?* The threshold chosen on dev favours recall; cross-sentence and negation cases are hard; no tuning.
+16. *Why is cross-sentence weaker?* Evidence is spread across sentences and our context is the span between the mentions; a document-level model would be needed.
+17. *Is 59.8 F1 good?* It beats all baselines clearly, but we make no claim to match the best published systems.
+18. *Why a threshold of 0.21?* It maximised F1 on the dev split; test was not used for tuning.
 
 **Evaluation / rigour**
-28. *Single run — is that valid?* It is a limitation; differences of a few points are not conclusive. With more time: multiple seeds and confidence intervals.
-29. *Why 2 epochs?* CPU-only laptop and a deadline; the NER loss had already fallen to ~0.03.
-30. *How do you know there is no train/test overlap?* BC5CDR splits are official and disjoint by PMID; Hetionet split is by edge with a fixed seed.
+19. *Single run — is that valid?* It is a limitation; differences of a few points are not conclusive. With more time: multiple seeds and confidence intervals.
+20. *Why 2 epochs?* CPU-only laptop and a deadline; the NER loss had already fallen to ~0.03.
+21. *How do you know there is no train/test overlap?* BC5CDR splits are official and disjoint by PMID.
+22. *Why train NER on train+dev?* Fixed schedule, no model selection, so dev is free to use; test is scored once.
 
 **System**
-31. *What does the app show?* Known treatments, top-10 predicted candidates (badge if hidden-true), local graph, literature associations, evaluation tables.
-32. *Can it run offline?* Yes, single HTML file with embedded data.
-33. *How is it reproducible?* One prep script + `run_all.sh`, fixed seeds, logs and result JSONs in `results/`.
-34. *What would make it clinically useful?* Expert review, experimental validation, newer KG, time-split evaluation, explanations — currently research-only.
+23. *What does the app show?* Search a disease/chemical → extracted relations with evidence sentence, probability, gold-match badge, PubMed link, a small relation graph and evaluation tables.
+24. *Can it run offline?* Yes, single HTML file with embedded data.
+25. *How is it reproducible?* One prep script + `run_all.sh`, fixed seeds, logs and result JSONs in `results/`.
 
 **Curveballs**
-35. *What is novel?* Integration and a controlled comparison under one protocol, CPU-only, with an interface — not a new model.
-36. *Why didn't you use an LLM?* Fine-tuned domain encoders still beat zero/few-shot LLMs on extraction benchmarks (Chen et al., 2025) and give traceable outputs; LLMs are listed as future work.
-37. *What changed from your first version?* Replaced 4 abstracts + hand-written lexicon + 106 curated edges with real benchmarks; added baselines, held-out evaluation, and a rebuilt app.
+26. *What is novel?* Integration and a controlled comparison under one protocol, CPU-only, with an evidence-linked interface — not a new model.
+27. *Why didn't you use an LLM?* Fine-tuned domain encoders still beat zero/few-shot LLMs on extraction benchmarks (Chen et al., 2025) and give traceable outputs; LLMs are listed as future work.
+28. *What changed from your first version?* Replaced 4 abstracts + a hand-written lexicon with a real benchmark; added baselines, held-out evaluation and a rebuilt app. A knowledge-graph embedding (link-prediction) stage was removed because it is graph machine learning rather than NLP and used a graph that did not come from the text pipeline.
 
 ---
 
 ## 11. Run it yourself
 ```bash
 pip install torch transformers scikit-learn sklearn-crfsuite seqeval
-# put BC5CDR (github.com/JHnlp/BioCreative-V-CDR-Corpus) and Hetionet (github.com/hetio/hetionet) files into data/raw/ as in README
+# unzip BC5CDR (github.com/JHnlp/BioCreative-V-CDR-Corpus) into data/raw/bc5cdr/
 cd scripts
 python prepare_data.py
-./run_all.sh            # ~2 h on a 16-core CPU
+python ner_classic.py
+./run_all.sh            # ~1.5 h on a 16-core CPU
 python build_app.py     # open app/index.html
 ```
 
 ## 12. Glossary
-**BERT** transformer encoder pre-trained with masked-language modelling · **PubMedBERT** BERT pre-trained from scratch on PubMed · **CRF** conditional random field for sequence labelling · **Word-piece** sub-word token · **TF-IDF** term-frequency × inverse-document-frequency weighting · **MeSH** NLM's controlled vocabulary · **CID** chemical-induced disease · **KG** knowledge graph · **Embedding** learned vector for an entity/relation · **MRR** mean reciprocal rank · **Hits@K** share of true answers in top K · **Filtered ranking** ignoring other true answers · **Negative sampling** corrupting true triples to make false ones for training.
+**BERT** transformer encoder pre-trained with masked-language modelling · **PubMedBERT** BERT pre-trained from scratch on PubMed · **CRF** conditional random field for sequence labelling · **Word-piece** sub-word token · **TF-IDF** term-frequency × inverse-document-frequency weighting · **MeSH** NLM's controlled vocabulary · **CID** chemical-induced disease · **Entity markers** special tokens placed around the two entities to classify · **Strict F1** exact span and type match.

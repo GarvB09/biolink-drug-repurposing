@@ -45,39 +45,5 @@
       "relations_without_candidate": 0,
       "avg_tokens_per_abstract": 249.5
     }
-  },
-  "hetionet": {
-    "entities": 21646,
-    "relations": 14,
-    "triples": 234512,
-    "train_triples": 234360,
-    "valid_ctd": 76,
-    "test_ctd": 76,
-    "train_ctd": 603,
-    "entity_kinds": {
-      "Gene": 13113,
-      "Side Effect": 5701,
-      "Compound": 1538,
-      "Symptom": 415,
-      "Anatomy": 398,
-      "Pharmacologic Class": 345,
-      "Disease": 136
-    },
-    "relation_counts": {
-      "causes": 138944,
-      "downregulates": 21102,
-      "upregulates": 18756,
-      "associates": 12623,
-      "binds": 11571,
-      "upregulates_d": 7731,
-      "downregulates_d": 7623,
-      "resembles": 6486,
-      "localizes": 3602,
-      "presents": 3357,
-      "includes": 1029,
-      "treats": 755,
-      "resembles_d": 543,
-      "palliates": 390
-    }
   }
 }

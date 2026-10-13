@@ -5,25 +5,12 @@
 #    abstracts with gold Chemical/Disease mentions (MeSH-normalised) and abstract-level
 #    Chemical-Induced-Disease (CID) relations, pre-split 500/500/500 into train/dev/test.
 #    -> sentence-level BIO data for NER, and (chemical, disease) candidate pairs for RE.
-# 2. **Hetionet v1.0** (Himmelstein et al., 2017): an integrative biomedical knowledge graph
-#    (47k nodes, 2.25M edges, 29 public sources). We keep the drug-repurposing-relevant
-#    metaedges around Compounds and Diseases and hold out Compound-treats-Disease (CtD) edges
-#    for link-prediction evaluation.
 
-import gzip
-import random
 from collections import Counter, defaultdict
 
-from common import (BC5CDR_FILES, HETIONET_EDGES, HETIONET_NODES, PROC_DIR, RESULTS_DIR,
-                    bio_tags, parse_pubtator, split_sentences, tokenize, write_json)
+from common import (BC5CDR_FILES, PROC_DIR, RESULTS_DIR, bio_tags, parse_pubtator, split_sentences,
+                    tokenize, write_json)
 
-KG_METAEDGES = {
-    "CtD": "treats", "CpD": "palliates", "CbG": "binds", "CdG": "downregulates",
-    "CuG": "upregulates", "CrC": "resembles", "PCiC": "includes", "CcSE": "causes",
-    "DaG": "associates", "DdG": "downregulates_d", "DuG": "upregulates_d", "DrD": "resembles_d",
-    "DlA": "localizes", "DpS": "presents",
-}
-SEED = 42
 
 
 def prepare_bc5cdr():
@@ -87,49 +74,5 @@ def prepare_bc5cdr():
     return stats
 
 
-def prepare_hetionet():
-    names, kinds = {}, {}
-    with open(HETIONET_NODES, encoding="utf-8") as f:
-        next(f)
-        for line in f:
-            nid, name, kind = line.rstrip("\n").split("\t")
-            names[nid], kinds[nid] = name, kind
-
-    triples = []
-    with gzip.open(HETIONET_EDGES, "rt", encoding="utf-8") as f:
-        next(f)
-        for line in f:
-            h, me, t = line.rstrip("\n").split("\t")
-            if me in KG_METAEDGES:
-                triples.append((h, KG_METAEDGES[me], t))
-
-    rng = random.Random(SEED)
-    ctd = [x for x in triples if x[1] == "treats"]
-    other = [x for x in triples if x[1] != "treats"]
-    rng.shuffle(ctd)
-    n_test = n_valid = round(0.1 * len(ctd))
-    test, valid, train_ctd = ctd[:n_test], ctd[n_test:n_test + n_valid], ctd[n_test + n_valid:]
-    train = other + train_ctd
-
-    entities = sorted({x for h, _, t in triples for x in (h, t)})
-    kg_dir = PROC_DIR / "kg"
-    kg_dir.mkdir(exist_ok=True)
-    for name, rows in (("train", train), ("valid", valid), ("test", test)):
-        (kg_dir / f"{name}.tsv").write_text("\n".join("\t".join(r) for r in rows) + "\n", encoding="utf-8")
-    write_json(kg_dir / "entities.json",
-               {e: {"name": names[e], "kind": kinds[e]} for e in entities}, indent=None)
-
-    stats = {
-        "entities": len(entities), "relations": len(KG_METAEDGES), "triples": len(triples),
-        "train_triples": len(train), "valid_ctd": len(valid), "test_ctd": len(test),
-        "train_ctd": len(train_ctd),
-        "entity_kinds": dict(Counter(kinds[e] for e in entities).most_common()),
-        "relation_counts": dict(Counter(r for _, r, _ in triples).most_common()),
-    }
-    print("hetionet subset", stats)
-    return stats
-
-
 if __name__ == "__main__":
-    write_json(RESULTS_DIR / "dataset_stats.json",
-               {"bc5cdr": prepare_bc5cdr(), "hetionet": prepare_hetionet()})
+    write_json(RESULTS_DIR / "dataset_stats.json", {"bc5cdr": prepare_bc5cdr()})

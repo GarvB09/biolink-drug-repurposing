@@ -1,4 +1,4 @@
-# Shared paths and BC5CDR / Hetionet loading utilities used by every pipeline stage.
+# Shared paths and BC5CDR loading utilities used by every pipeline stage.
 import json
 import re
 from pathlib import Path
@@ -18,8 +18,6 @@ BC5CDR_FILES = {
     "dev": BC5CDR_DIR / "CDR_DevelopmentSet.PubTator.txt",
     "test": BC5CDR_DIR / "CDR_TestSet.PubTator.txt",
 }
-HETIONET_NODES = RAW_DIR / "hetionet-v1.0-nodes.tsv"
-HETIONET_EDGES = RAW_DIR / "hetionet-v1.0-edges.sif.gz"
 
 PUBMEDBERT = "microsoft/BiomedNLP-BiomedBERT-base-uncased-abstract-fulltext"
 BIOBERT = "dmis-lab/biobert-base-cased-v1.2"
