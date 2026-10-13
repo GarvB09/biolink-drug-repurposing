@@ -1,0 +1,16 @@
+Bag of Words, lower-case tokens {'precision': 0.3841, 'recall': 0.6857, 'f1': 0.4924, 'roc_auc': 0.7791, 'threshold': 0.16, 'confusion': {'tn': 3167, 'fp': 1172, 'fn': 335, 'tp': 731}, 'vocabulary_size': 7499, 'avg_tokens': 45.6506, 'seconds': 1.5}
+TF-IDF, lower-case tokens {'precision': 0.3791, 'recall': 0.7101, 'f1': 0.4943, 'roc_auc': 0.793, 'threshold': 0.38, 'confusion': {'tn': 3099, 'fp': 1240, 'fn': 309, 'tp': 757}, 'vocabulary_size': 7499, 'avg_tokens': 45.6506, 'seconds': 1.1}
+TF-IDF + stop-word removal {'precision': 0.3737, 'recall': 0.7298, 'f1': 0.4943, 'roc_auc': 0.786, 'threshold': 0.39, 'confusion': {'tn': 3035, 'fp': 1304, 'fn': 288, 'tp': 778}, 'vocabulary_size': 7388, 'avg_tokens': 32.3494, 'seconds': 1.0}
+TF-IDF + stop-word removal (negations kept) {'precision': 0.3811, 'recall': 0.7214, 'f1': 0.4987, 'roc_auc': 0.7866, 'threshold': 0.4, 'confusion': {'tn': 3090, 'fp': 1249, 'fn': 297, 'tp': 769}, 'vocabulary_size': 7392, 'avg_tokens': 32.5488, 'seconds': 1.0}
+TF-IDF + Porter stemming {'precision': 0.393, 'recall': 0.6961, 'f1': 0.5024, 'roc_auc': 0.7945, 'threshold': 0.4, 'confusion': {'tn': 3193, 'fp': 1146, 'fn': 324, 'tp': 742}, 'vocabulary_size': 6054, 'avg_tokens': 45.6506, 'seconds': 5.5}
+TF-IDF + WordNet lemmatisation {'precision': 0.4284, 'recall': 0.6341, 'f1': 0.5113, 'roc_auc': 0.7938, 'threshold': 0.46, 'confusion': {'tn': 3437, 'fp': 902, 'fn': 390, 'tp': 676}, 'vocabulary_size': 6812, 'avg_tokens': 45.6506, 'seconds': 22.4}
+TF-IDF + stop-word removal + lemmatisation {'precision': 0.3812, 'recall': 0.7148, 'f1': 0.4972, 'roc_auc': 0.787, 'threshold': 0.41, 'confusion': {'tn': 3102, 'fp': 1237, 'fn': 304, 'tp': 762}, 'vocabulary_size': 6718, 'avg_tokens': 32.3494, 'seconds': 18.6}
+TF-IDF + POS-tagged tokens {'precision': 0.3915, 'recall': 0.6689, 'f1': 0.4939, 'roc_auc': 0.7855, 'threshold': 0.41, 'confusion': {'tn': 3231, 'fp': 1108, 'fn': 353, 'tp': 713}, 'vocabulary_size': 10025, 'avg_tokens': 45.6506, 'seconds': 17.5}
+{'Same-sentence co-occurrence': {'confusion': {'tn': 2670, 'fp': 1669, 'fn': 318, 'tp': 748}, 'roc_auc': None}, 'Abstract co-occurrence (all pairs)': {'confusion': {'tn': 0, 'fp': 4339, 'fn': 0, 'tp': 1066}, 'roc_auc': None}, 'PubMedBERT pair classifier': {'confusion': {'tn': 3553, 'fp': 786, 'fn': 276, 'tp': 790}, 'roc_auc': 0.8526365651728919}, 'TF-IDF + logistic regression': {'confusion': {'tn': 3340, 'fp': 999, 'fn': 378, 'tp': 688}, 'roc_auc': 0.7888895038541748, 'precision': 0.4078245406046236, 'recall': 0.6454033771106942, 'f1': 0.4998183799491464}}
+{'CRF': 0.9651, 'BERT-base': 0.9734, 'PubMedBERT': 0.9793}
+original : [C] Indomethacin [/C] induced [D] hypotension [/D] in sodium and volume depleted rats.
+tokens : chemstart indomethacin chemend induced disstart hypotension disend in sodium and volume depleted rats
+stop_words_removed : chemstart indomethacin chemend induced disstart hypotension disend sodium volume depleted rats
+stemmed : chemstart indomethacin chemend induc disstart hypotens disend in sodium and volum deplet rat
+lemmatised : chemstart indomethacin chemend induce disstart hypotension disend in sodium and volume deplete rat
+pos_tagged : chemstart indomethacin_NN chemend induced_VBD disstart hypotension_NN disend in_IN sodium_NN and_CC volume_NN depleted_VBD rats_NNS

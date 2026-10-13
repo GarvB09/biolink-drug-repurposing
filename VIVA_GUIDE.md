@@ -108,10 +108,17 @@ Task: for each (chemical ID, disease ID) pair in an abstract → is it a CID rel
 - Extra analysis: F1 split into same-sentence (65.9) vs cross-sentence (45.6).
 - Scoring: pair-level P/R/F1 with **gold entities** (the official CID setting).
 
-### 5.6 `build_app.py` and `app/index.html`
+### 5.6 `preprocessing_study.py` — classic preprocessing, features and extra metrics
+- Re-uses the relation candidates and `marked_context` from `relations.py`. Entity markers are turned into placeholder words (`chemstart`, `chemend`, `disstart`, `disend`) so no step deletes or changes them.
+- Eight variants, all with the **same** logistic regression (C=4, balanced) and a threshold tuned on dev:
+  Bag of Words; TF-IDF; TF-IDF + stop-word removal (NLTK English list, 198 words); stop-word removal keeping negations (no, not, nor, without, against); Porter stemming; WordNet lemmatisation (POS-guided); stop words + lemmatisation; POS-tagged tokens (`word_TAG`).
+- Also computes **ROC-AUC** and **confusion matrices** for every relation model (PubMedBERT from its saved test probabilities) and **token-level confusion matrices** for the NER models, and writes a worked example of each step on one sentence (`results/preprocessing_example.json`).
+- Why classic steps are applied only to BoW/TF-IDF: transformers need raw text for their word-piece vocabulary; NER needs every token so gold character offsets stay valid.
+
+### 5.7 `build_app.py` and `app/index.html`
 Pure static page (works offline, `file://`). The script embeds the PubMedBERT relation predictions for the 500 test abstracts (pairs above the tuned threshold, 1,576 of them) plus the metric tables as one JS object and writes the HTML (CSS and the vis-network library come from `_base.html`). The JS: search a disease or chemical name → list the extracted relations with the evidence sentence, probability, a "matches gold" badge if the pair is also in the human annotation, and a PubMed link; a small graph of the query and its related entities; tabs with the Relation and NER evaluation tables.
 
-### 5.7 `run_all.sh`
+### 5.8 `run_all.sh`
 Runs: PubMedBERT NER → relation extraction → BERT-base NER, each skipped if its result file exists (safe to resume after a crash). `ner_classic.py` (dictionary + CRF) is run separately. Environment variable `RE_EPOCHS` sets the relation-extraction epochs.
 
 ---
@@ -133,6 +140,22 @@ Runs: PubMedBERT NER → relation extraction → BERT-base NER, each skipped if 
 | Abstract co-occurrence | 19.7 | 100 | 32.9 |
 | TF-IDF + LR | 40.8 | 64.5 | 50.0 |
 | **PubMedBERT** | 50.1 | 74.1 | **59.8** (same-sentence 65.9, cross-sentence 45.6) |
+
+**ROC-AUC / confusion matrix (relations, 5,405 test pairs):** PubMedBERT AUC 0.853 (TP 790, FP 786, FN 276, TN 3,553); TF-IDF+LR AUC 0.789 (TP 688, FP 999, FN 378, TN 3,340). NER token accuracy: PubMedBERT 97.9%, BERT-base 97.3%, CRF 96.5% (dominated by the O tag, so entity F1 is the headline). Only 27 tokens confuse chemical with disease; most errors are missed/extra mentions and disease B/I boundaries.
+
+**Preprocessing study (TF-IDF/BoW + logistic regression, relations, F1 % / ROC-AUC)**
+| Variant | F1 | ROC-AUC |
+|---|---|---|
+| Bag of Words | 49.2 | 0.779 |
+| TF-IDF | 49.4 | 0.793 |
+| + stop-word removal | 49.4 | 0.786 |
+| + stop-word removal, negations kept | 49.9 | 0.787 |
+| + Porter stemming | 50.2 | 0.794 |
+| **+ WordNet lemmatisation** | **51.1** | 0.794 |
+| + stop words + lemmatisation | 49.7 | 0.787 |
+| + POS-tagged tokens | 49.4 | 0.786 |
+
+Take-away: classic preprocessing moves F1 by < 2 points (within single-run noise); lemmatisation helps most, stop-word removal not at all. PubMedBERT's lead (8.7 points over the best variant) is 5× the best preprocessing gain.
 
 **How to interpret:** PubMedBERT > BERT-base by 3.7 F1 (biomedical pretraining helps, mostly on diseases); transformers beat the CRF mainly through **recall**; relation extraction is hardest across sentences.
 
@@ -190,6 +213,13 @@ Larger corpora (BioRED, PubTator), end-to-end evaluation, document-level relatio
 12. *How do you handle word-pieces?* Label on first sub-token, `-100` on the rest, predict from first sub-token.
 13. *Why no stop-word removal or stemming?* Function words carry relation cues ("induced by"); word-piece tokenisation handles inflection.
 
+**Preprocessing**
+P1. *Did you do stop-word removal, stemming, lemmatisation, POS tagging?* Yes — as a measured study on the TF-IDF relation model (Table 8 in the report). Lemmatisation +1.7 F1, stemming +0.8, stop-word removal 0.
+P2. *Why does stop-word removal not help?* Words like "by", "in", "no", "not" carry relation cues ("induced by", "no evidence of"); removing them throws away signal. Keeping negations recovers half a point.
+P3. *Why lemmatisation over stemming?* Lemmas are real words ("induce", "hypotension"); Porter stemming over-cuts biomedical terms ("hypotens", "volum").
+P4. *Why not apply these to BERT?* Its word-piece vocabulary was learned on raw text; changing words would create inputs it never saw.
+P5. *BoW vs TF-IDF?* TF-IDF down-weights words common to every context; it scored slightly higher (ROC-AUC 0.793 vs 0.779).
+
 **Relation extraction**
 14. *How do you tell the model which pair to classify?* Entity markers `[C]…[/C]`, `[D]…[/D]`.
 15. *Why is precision only 50%?* The threshold chosen on dev favours recall; cross-sentence and negation cases are hard; no tuning.
@@ -217,12 +247,13 @@ Larger corpora (BioRED, PubTator), end-to-end evaluation, document-level relatio
 
 ## 11. Run it yourself
 ```bash
-pip install torch transformers scikit-learn sklearn-crfsuite seqeval
+pip install torch transformers scikit-learn sklearn-crfsuite seqeval nltk
 # unzip BC5CDR (github.com/JHnlp/BioCreative-V-CDR-Corpus) into data/raw/bc5cdr/
 cd scripts
 python prepare_data.py
 python ner_classic.py
-./run_all.sh            # ~1.5 h on a 16-core CPU
+./run_all.sh
+python preprocessing_study.py   # ~1 min, needs nltk            # ~1.5 h on a 16-core CPU
 python build_app.py     # open app/index.html
 ```
 

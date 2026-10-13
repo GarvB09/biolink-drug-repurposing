@@ -1,0 +1,186 @@
+{
+  "relations": {
+    "Same-sentence co-occurrence": {
+      "confusion": {
+        "tn": 2670,
+        "fp": 1669,
+        "fn": 318,
+        "tp": 748
+      },
+      "roc_auc": null
+    },
+    "Abstract co-occurrence (all pairs)": {
+      "confusion": {
+        "tn": 0,
+        "fp": 4339,
+        "fn": 0,
+        "tp": 1066
+      },
+      "roc_auc": null
+    },
+    "PubMedBERT pair classifier": {
+      "confusion": {
+        "tn": 3553,
+        "fp": 786,
+        "fn": 276,
+        "tp": 790
+      },
+      "roc_auc": 0.8526365651728919
+    },
+    "TF-IDF + logistic regression": {
+      "confusion": {
+        "tn": 3340,
+        "fp": 999,
+        "fn": 378,
+        "tp": 688
+      },
+      "roc_auc": 0.7888895038541748,
+      "precision": 0.4078245406046236,
+      "recall": 0.6454033771106942,
+      "f1": 0.4998183799491464
+    }
+  },
+  "ner_token_confusion": {
+    "CRF": {
+      "labels": [
+        "O",
+        "B-Chemical",
+        "I-Chemical",
+        "B-Disease",
+        "I-Disease"
+      ],
+      "matrix": [
+        [
+          109412,
+          186,
+          176,
+          425,
+          375
+        ],
+        [
+          825,
+          4491,
+          37,
+          26,
+          6
+        ],
+        [
+          454,
+          64,
+          1110,
+          0,
+          0
+        ],
+        [
+          736,
+          25,
+          1,
+          3443,
+          219
+        ],
+        [
+          590,
+          4,
+          1,
+          205,
+          1937
+        ]
+      ],
+      "token_accuracy": 0.9650896206752814
+    },
+    "BERT-base": {
+      "labels": [
+        "O",
+        "B-Chemical",
+        "I-Chemical",
+        "B-Disease",
+        "I-Disease"
+      ],
+      "matrix": [
+        [
+          108988,
+          368,
+          227,
+          620,
+          371
+        ],
+        [
+          286,
+          5033,
+          42,
+          23,
+          1
+        ],
+        [
+          205,
+          52,
+          1371,
+          0,
+          0
+        ],
+        [
+          380,
+          21,
+          0,
+          3843,
+          180
+        ],
+        [
+          322,
+          8,
+          0,
+          214,
+          2193
+        ]
+      ],
+      "token_accuracy": 0.9733863468753006
+    },
+    "PubMedBERT": {
+      "labels": [
+        "O",
+        "B-Chemical",
+        "I-Chemical",
+        "B-Disease",
+        "I-Disease"
+      ],
+      "matrix": [
+        [
+          109342,
+          219,
+          167,
+          499,
+          347
+        ],
+        [
+          257,
+          5092,
+          26,
+          9,
+          1
+        ],
+        [
+          174,
+          42,
+          1412,
+          0,
+          0
+        ],
+        [
+          248,
+          13,
+          0,
+          3982,
+          181
+        ],
+        [
+          278,
+          3,
+          1,
+          116,
+          2339
+        ]
+      ],
+      "token_accuracy": 0.9793102895437201
+    }
+  }
+}

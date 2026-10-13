@@ -1,0 +1,130 @@
+{
+  "Bag of Words, lower-case tokens": {
+    "precision": 0.38413032054650553,
+    "recall": 0.6857410881801126,
+    "f1": 0.4924216908049848,
+    "roc_auc": 0.7791102946486058,
+    "threshold": 0.16000000000000003,
+    "confusion": {
+      "tn": 3167,
+      "fp": 1172,
+      "fn": 335,
+      "tp": 731
+    },
+    "vocabulary_size": 7499,
+    "avg_tokens": 45.65058910162003,
+    "seconds": 1.5
+  },
+  "TF-IDF, lower-case tokens": {
+    "precision": 0.3790686029043565,
+    "recall": 0.7101313320825516,
+    "f1": 0.49428664707802805,
+    "roc_auc": 0.7930432220183709,
+    "threshold": 0.38000000000000006,
+    "confusion": {
+      "tn": 3099,
+      "fp": 1240,
+      "fn": 309,
+      "tp": 757
+    },
+    "vocabulary_size": 7499,
+    "avg_tokens": 45.65058910162003,
+    "seconds": 1.1
+  },
+  "TF-IDF + stop-word removal": {
+    "precision": 0.37367915465898177,
+    "recall": 0.7298311444652908,
+    "f1": 0.49428208386277,
+    "roc_auc": 0.7860421665361548,
+    "threshold": 0.39000000000000007,
+    "confusion": {
+      "tn": 3035,
+      "fp": 1304,
+      "fn": 288,
+      "tp": 778
+    },
+    "vocabulary_size": 7388,
+    "avg_tokens": 32.34941089837997,
+    "seconds": 1.0
+  },
+  "TF-IDF + stop-word removal (negations kept)": {
+    "precision": 0.3810703666997027,
+    "recall": 0.7213883677298312,
+    "f1": 0.4987029831387808,
+    "roc_auc": 0.7865900141264254,
+    "threshold": 0.4000000000000001,
+    "confusion": {
+      "tn": 3090,
+      "fp": 1249,
+      "fn": 297,
+      "tp": 769
+    },
+    "vocabulary_size": 7392,
+    "avg_tokens": 32.54878497790869,
+    "seconds": 1.0
+  },
+  "TF-IDF + Porter stemming": {
+    "precision": 0.3930084745762712,
+    "recall": 0.6960600375234521,
+    "f1": 0.5023696682464455,
+    "roc_auc": 0.7944911049355142,
+    "threshold": 0.4000000000000001,
+    "confusion": {
+      "tn": 3193,
+      "fp": 1146,
+      "fn": 324,
+      "tp": 742
+    },
+    "vocabulary_size": 6054,
+    "avg_tokens": 45.65058910162003,
+    "seconds": 5.5
+  },
+  "TF-IDF + WordNet lemmatisation": {
+    "precision": 0.42839036755386567,
+    "recall": 0.6341463414634146,
+    "f1": 0.5113464447806354,
+    "roc_auc": 0.7938111599191762,
+    "threshold": 0.4600000000000001,
+    "confusion": {
+      "tn": 3437,
+      "fp": 902,
+      "fn": 390,
+      "tp": 676
+    },
+    "vocabulary_size": 6812,
+    "avg_tokens": 45.65058910162003,
+    "seconds": 22.4
+  },
+  "TF-IDF + stop-word removal + lemmatisation": {
+    "precision": 0.3811905952976488,
+    "recall": 0.7148217636022514,
+    "f1": 0.4972267536704731,
+    "roc_auc": 0.786994413857128,
+    "threshold": 0.4100000000000001,
+    "confusion": {
+      "tn": 3102,
+      "fp": 1237,
+      "fn": 304,
+      "tp": 762
+    },
+    "vocabulary_size": 6718,
+    "avg_tokens": 32.34941089837997,
+    "seconds": 18.6
+  },
+  "TF-IDF + POS-tagged tokens": {
+    "precision": 0.3915431081823174,
+    "recall": 0.6688555347091932,
+    "f1": 0.49393834430204364,
+    "roc_auc": 0.7855045883857176,
+    "threshold": 0.4100000000000001,
+    "confusion": {
+      "tn": 3231,
+      "fp": 1108,
+      "fn": 353,
+      "tp": 713
+    },
+    "vocabulary_size": 10025,
+    "avg_tokens": 45.65058910162003,
+    "seconds": 17.5
+  }
+}
